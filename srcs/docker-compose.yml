@@ -1,0 +1,66 @@
+services:
+  nginx:
+    container_name: nginx
+    restart: unless-stopped
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - wordpress:/var/www/html
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    networks:
+      - inception
+
+  wordpress:
+    container_name: wordpress
+    env_file: .env
+    restart: unless-stopped
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    networks:
+      - inception
+
+  mariadb:
+    container_name: mariadb
+    env_file: .env
+    restart: unless-stopped
+    build:
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
+    volumes:
+      - DB:/var/lib/mysql
+    networks:
+      - inception
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${SQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/wordpress
+  DB:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/mariadb
+
+networks:
+  inception:
+    driver: bridge
