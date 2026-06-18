@@ -1,18 +1,19 @@
-COMPATH = -f ./srcs/docker-compose.yml
+DC = -f ./srcs/docker-compose.yml
 
 all: up
 
-up: 
+up:
 	@if [ -f ./srcs/.env ]; then \
+		mkdir -p /home/psoulie/data/; \
 		mkdir -p /home/psoulie/data/wordpress; \
 		mkdir -p /home/psoulie/data/mariadb; \
-		docker compose $(COMPATH) up -d; \
+		docker compose $(DC) up -d; \
 	else \
-		echo "srcs/.env file is missing"; \
+		echo "./srcs/.env file is missing"; \
 	fi
 
 down:
-	@docker compose -f $(COMPATH) down
+	@docker compose $(DC) down
 
 fclean: down
 	sudo rm -rf /home/psoulie/data
@@ -22,5 +23,4 @@ fclean: down
 
 re: fclean up
 
-.PHONY: all up down fclean re
-
+.PHONY: all up down re fclean

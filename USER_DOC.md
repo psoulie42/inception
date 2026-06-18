@@ -23,11 +23,11 @@ The project is managed via a Makefile located at the root of the repository.
 ## 3. Accessing the Website and Admin Panel
 ### Prerequisites
 Before accessing the site, you must ensure that your local machine recognizes the domain name. Add the following line to your `/etc/hosts` file:
-`127.0.0.1 squement.42.fr`
+`127.0.0.1 psoulie.42.fr`
 
 ### URLs
-* **Main Website**: [https://squement.42.fr](https://squement.42.fr)
-* **WordPress Admin Panel**: [https://squement.42.fr/wp-admin](https://squement.42.fr/wp-admin)
+* **Main Website**: [https://psoulie.42.fr](https://psoulie.42.fr)
+* **WordPress Admin Panel**: [https://psoulie.42.fr/wp-admin](https://psoulie.42.fr/wp-admin)
 
 ## 4. Managing Credentials
 All sensitive information and credentials (usernames, passwords, database names) must be stored in an environment file with the format of `srcs/exemple.env`:

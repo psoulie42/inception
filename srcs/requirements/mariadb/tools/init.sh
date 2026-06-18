@@ -4,6 +4,7 @@ mkdir -p /run/mysqld
 chown mysql:mysql /run/mysqld
 
 if [ ! -d "/var/lib/mysql/${SQL_DATABASE}" ]; then
+    mysql_install_db --user=mysql --datadir=/var/lib/mysql > /dev/null
     mysqld_safe --skip-networking &
 
     until mysqladmin ping --silent 2>/dev/null; do
