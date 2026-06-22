@@ -39,7 +39,7 @@ A makefile is provided at the root of the repository to manage the entire lifecy
 
 * `make up`: Automatically creates required host directories, builds the images, and starts the containers.
 * `make down`: Stops all running containers.
-* `make fclean`: Performs a full cleanup, including the deletion of persistent data in `/home/squement/data`.
+* `make fclean`: Performs a full cleanup, including the deletion of persistent data in `/home/psoulie/data`.
 * `make re`: Restarts the entire build and deployment process.
 
 ---
