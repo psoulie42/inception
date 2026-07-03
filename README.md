@@ -123,7 +123,7 @@ Docker allows lightweight, reproducible environments compared to traditional vir
 
 AI tools were used in the following ways:
 
-- Making this readme
+- Making this readme and the other MarkDown files
 
 ---
 
